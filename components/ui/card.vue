@@ -6,7 +6,7 @@
       {{ title }}
     </h3>
 
-    <div class="mt-2 justify-between flex items-center w-full max-w-[205px] min-h-5">
+    <div class="mt-2 justify-between flex items-center w-full max-w-[205px] h-6">
       <div>
         <p class="font-inter font-[500] text-[15px] text-[#8D8D8D]">Цена:</p>
         <p class="font-inter font-bold text-xl">{{ price }} USD</p>

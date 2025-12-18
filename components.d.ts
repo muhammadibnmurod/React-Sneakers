@@ -13,6 +13,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     NButton: typeof import('naive-ui')['NButton']
+    NDrawer: typeof import('naive-ui')['NDrawer']
+    NDrawerContent: typeof import('naive-ui')['NDrawerContent']
     NIcon: typeof import('naive-ui')['NIcon']
     NImage: typeof import('naive-ui')['NImage']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -23,6 +25,8 @@ declare module 'vue' {
 // For TSX support
 declare global {
   const NButton: typeof import('naive-ui')['NButton']
+  const NDrawer: typeof import('naive-ui')['NDrawer']
+  const NDrawerContent: typeof import('naive-ui')['NDrawerContent']
   const NIcon: typeof import('naive-ui')['NIcon']
   const NImage: typeof import('naive-ui')['NImage']
   const RouterLink: typeof import('vue-router')['RouterLink']
