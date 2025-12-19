@@ -7,5 +7,23 @@ export interface CartItem {
 }
 
 export const useCart = () => {
-  return useState<CartItem[]>("cart", () => []);
+  const cart = useState<CartItem[]>("cart", () => {
+    if (process.client) {
+      const savedCart = localStorage.getItem("cart");
+      return savedCart ? JSON.parse(savedCart) : [];
+    }
+    return [];
+  });
+
+  if (process.client) {
+    watch(
+      cart,
+      (newCart) => {
+        localStorage.setItem("cart", JSON.stringify(newCart));
+      },
+      { deep: true }
+    );
+  }
+
+  return cart;
 };

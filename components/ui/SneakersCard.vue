@@ -31,7 +31,7 @@ function addToCart() {
 </script>
 
 <template>
-  <div>
+  <div class="bg-[#000000]">
     <img :src="imgSrc" />
     <h3>{{ title }}</h3>
     <p>{{ price }} ₽</p>
