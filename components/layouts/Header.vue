@@ -27,6 +27,9 @@ const showDrawer = ref(false);
         class="flex items-center cursor-pointer gap-2"
         @click="showDrawer = true"
       >
+        <n-icon size="30" color="#9B9B9B">
+          <LocalGroceryStoreOutlined />
+        </n-icon>
         <span class="font-inter font-semibold text-[16px] text-[#5C5C5C]"
           >1205 руб.</span
         >

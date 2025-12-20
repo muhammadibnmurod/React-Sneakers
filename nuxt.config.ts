@@ -82,12 +82,12 @@ export default defineNuxtConfig({
               removeHiddenElems: false,
               removeEmptyText: false,
               inlineStyles: false,
-              minifyStyles: false
-            }
-          }
-        }
-      ]
-    }
+              minifyStyles: false,
+            },
+          },
+        },
+      ],
+    },
   },
 
   imports: {

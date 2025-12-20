@@ -7,8 +7,6 @@ import Sneakers from "~/components/layouts/Sneakers.vue";
 <template>
   <div class="flex flex-col p-12 w-full gap-14">
     <Header />
-    <Main class="p-16" />
-    <Sneakers class="p-16" />
   </div>
 </template>
 

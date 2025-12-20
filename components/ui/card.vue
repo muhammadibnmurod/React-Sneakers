@@ -44,9 +44,7 @@ const handleClick = () => {
 </script>
 
 <template>
-  <div
-    class="p-4 rounded-2xl hover:shadow-lg transition"
-  >
+  <div class="p-4 rounded-2xl hover:shadow-lg transition">
     <n-image :src="imgSrc" width="200" height="150" class="mx-auto" />
 
     <h3 class="mt-2 font-inter text-[14px] font-[400] max-w-[205px]">

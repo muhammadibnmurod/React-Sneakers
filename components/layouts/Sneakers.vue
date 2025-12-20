@@ -5,6 +5,7 @@
       <Card
         v-for="sneaker in sneakers"
         :key="sneaker.id"
+        :id="sneaker.id"
         :title="sneaker.title"
         :price="sneaker.price"
         :imgSrc="sneaker.imgSrc"
@@ -49,7 +50,7 @@ const sneakers: Sneaker[] = [
   {
     id: 3,
     title: "Мужские Кроссовки Nike Blazer Mid Suede",
-    price: 8.400,
+    price: 8.4,
     imgSrc: Sneaker3,
   },
   {

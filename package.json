@@ -28,6 +28,7 @@
     "autoprefixer": "^10.4.23",
     "naive-ui": "^2.43.2",
     "postcss": "^8.5.6",
+    "prettier": "3.7.4",
     "tailwindcss": "^3.4.19",
     "unplugin-auto-import": "^20.3.0",
     "unplugin-vue-components": "^30.0.0"

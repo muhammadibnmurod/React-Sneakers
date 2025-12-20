@@ -1,5 +1,5 @@
-import ru from './ru-RU.json'
+import ru from "./ru-RU.json";
 
-export  default {
-    ...ru
-}
+export default {
+  ...ru,
+};

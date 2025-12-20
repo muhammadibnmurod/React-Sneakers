@@ -1,5 +1,5 @@
-import uz from './uz-Latn-UZ.json'
+import uz from "./uz-Latn-UZ.json";
 
 export default {
-    ...uz
-}
+  ...uz,
+};

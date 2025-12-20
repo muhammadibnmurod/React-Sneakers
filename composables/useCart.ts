@@ -21,7 +21,7 @@ export const useCart = () => {
       (newCart) => {
         localStorage.setItem("cart", JSON.stringify(newCart));
       },
-      { deep: true }
+      { deep: true },
     );
   }
 
