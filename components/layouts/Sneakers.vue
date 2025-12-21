@@ -34,6 +34,16 @@ interface Sneaker {
   imgSrc: string;
 }
 
+onMounted(() => {
+  fetchPokemon();
+});
+
+async function fetchPokemon() {
+  const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
+  const data = await response.json();
+  console.log(data);
+}
+
 const sneakers: Sneaker[] = [
   {
     id: 1,
