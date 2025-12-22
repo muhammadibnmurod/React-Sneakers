@@ -9,7 +9,9 @@
         :title="sneaker.title"
         :price="sneaker.price"
         :imgSrc="sneaker.imgSrc"
+        :data="data"
       />
+      {{ data }}
     </div>
   </div>
 </template>
@@ -38,9 +40,11 @@ onMounted(() => {
   fetchPokemon();
 });
 
+const data = ref(null);
+
 async function fetchPokemon() {
   const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
-  const data = await response.json();
+  data.value = await response.json();
   console.log(data);
 }
 
