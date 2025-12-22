@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
 import Logo from "@/assets/images/Logo.png";
 import { LocalGroceryStoreOutlined } from "@vicons/material";
 import { MdHeartEmpty } from "@vicons/ionicons4";
 import { PersonCircleOutline } from "@vicons/ionicons5";
 import type { DrawerPlacement } from "naive-ui";
 import Drawer from "@/components/ui/Drawer.vue";
+
+const totalPrice = ref<string | null>(null);
+
+onMounted(() => {
+  if (typeof window !== "undefined" && window.localStorage) {
+    totalPrice.value = localStorage.getItem("totalPrice");
+  }
+});
 
 const showDrawer = ref(false);
 </script>
@@ -31,7 +40,7 @@ const showDrawer = ref(false);
           <LocalGroceryStoreOutlined />
         </n-icon>
         <span class="font-inter font-semibold text-[16px] text-[#5C5C5C]"
-          >1205 руб.</span
+          >{{ totalPrice ?? "0" }} руб.</span
         >
       </button>
       <div class="flex items-center cursor-pointer gap-2">

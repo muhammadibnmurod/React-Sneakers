@@ -1,15 +1,29 @@
 <script setup lang="ts">
+import { computed, watch } from "vue";
 import { useCart } from "~/composables/useCart";
-import { useDrawer } from "~/composables/useDrawer";
-import { useRouter } from "vue-router";
+import Counter from "@/components/ui/Counter.vue";
+const drawer = ref(false);
 
 const cart = useCart();
-const drawer = useDrawer();
-const router = useRouter();
 
-const goToSneakers = () => {
-  router.push("/sneakers");
-};
+const totalPrice = computed(() => {
+  return cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0);
+});
+
+if (process.client) {
+  watch(
+    totalPrice,
+    (total) => {
+      try {
+        localStorage.setItem("totalPrice", total.toString());
+      } catch (e) {
+      }
+    },
+    { immediate: true }
+  );
+}
+
+const tax = computed(() => Math.round(totalPrice.value * 0.05));
 
 const removeFromCart = (id: number) => {
   cart.value = cart.value.filter((item) => item.id !== id);
@@ -17,67 +31,48 @@ const removeFromCart = (id: number) => {
 </script>
 
 <template>
-  <n-drawer
-    v-model:show="drawer"
-    placement="right"
-    width="550"
-    class="bg-white"
-  >
-    <n-drawer-content class="bg-white p-4">
-      <!-- Yuqori qism -->
-      <template #header>
-        <h1 class="text-2xl font-bold text-[#000000] mb-4">Корзина</h1>
+  <n-drawer v-model:show="drawer" width="450">
+    <n-drawer-content title="Корзина" closable class="bg-white text-[#000000]">
+      <div v-if="cart.length > 0">
+        <div v-for="item in cart" :key="item.id" class="flex items-center gap-4 border p-4 rounded-xl mb-4">
+          <img :src="item.imgSrc" class="w-16 h-16 object-contain" />
 
-        <p v-if="cart.length === 0">Корзина пустая</p>
-
-        <div
-          v-for="item in cart"
-          :key="item.id"
-          class="flex gap-6 mb-4 p-6 items-center border-b"
-        >
-          <img :src="item.imgSrc" class="w-24 h-24 object-contain" />
-          <div class="flex justify-between w-full">
-            <div>
-              <p class="text-sm font-[600] max-w-[200px] text-[#000000]">
-                {{ item.title }}
-              </p>
-              <p class="text-gray-500">
-                {{ item.price }} USD x {{ item.quantity }}
-              </p>
+          <div class="flex flex-col flex-1">
+            <p class="text-sm font-semibold">{{ item.title }}</p>
+            <div class="flex justify-between items-center mt-2">
+              <b class="text-slate-900">{{ item.price }} USD</b>
+              <Counter v-model="item.quantity" />
+              <button @click="removeFromCart(item.id)" class="text-red-400 hover:text-red-600">
+                ×
+              </button>
             </div>
-            <button
-              @click="removeFromCart(item.id)"
-              class="text-red-500 font-bold"
-            >
-              X
-            </button>
           </div>
         </div>
-      </template>
+      </div>
 
-      <!-- Pastki qism -->
+      <div v-else class="text-center mt-20 text-gray-400">Корзина пустая</div>
+
       <template #footer>
-        <div class="border-t p-4 bg-white mt-4 h-full w-full">
-          <div class="flex flex-col">
-            <div class="flex justify-between mb-2">
-              <h2 class="text-[#000000]">Итого:</h2>
-              <p class="font-bold text-[#000000]">21 498 руб.</p>
-            </div>
-            <div class="flex justify-between mb-2">
-              <h2 class="text-[#000000]">Налог 5%:</h2>
-              <p class="font-bold text-[#000000]">1 074 руб.</p>
-            </div>
-            <button
-              class="text-[#000000] px-1 py-4 mt-2 border rounded-3xl bg-[#9DD458]"
-              @click="goToSneakers"
-            >
-              <span class="text-white font-inter font-[500] text-[18px]">
-                Оформить заказ
-              </span>
-            </button>
+        <div class="w-full space-y-3">
+          <div class="flex justify-between">
+            <span>Итого:</span>
+            <span class="font-bold">{{ totalPrice }} USD</span>
           </div>
+          <div class="flex justify-between">
+            <span>Налог 5%:</span>
+            <span class="font-bold">{{ tax }} USD</span>
+          </div>
+          <button class="w-full bg-[#9DD458] text-white py-3 rounded-xl font-bold hover:bg-green-600 transition">
+            Оформить заказ
+          </button>
         </div>
       </template>
     </n-drawer-content>
   </n-drawer>
 </template>
+
+<style scoped>
+  n-drower-content.title {
+    color: black;
+  }
+</style>
