@@ -9,6 +9,10 @@
         :title="sneaker.title"
         :price="sneaker.price"
         :imgSrc="sneaker.imgSrc"
+
+
+
+        
       />
     </div>
   </div>
