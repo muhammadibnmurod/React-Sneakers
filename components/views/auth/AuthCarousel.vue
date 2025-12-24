@@ -19,7 +19,7 @@
     <n-carousel-item
       v-for="(item, index) in carouselList"
       :key="index"
-      class="h-full border border-surface-30 bg-surface-20"
+      class="h-full border-surface-30 bg-surface-20"
     >
       <div
         class="bg-radial-auth dark:bg-dark-radial-auth overflow-hidden w-full h-full flex relative z-[9999]"

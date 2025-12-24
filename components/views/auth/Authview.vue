@@ -11,8 +11,8 @@ const form = ref({
 
 <template>
   <div
-    class="flex w-full h-[850px] bg-surface-40 rounded-2xl border border-surface-30 shadow-auth-login font-geist overflow-hidden">
-    <div class="flex flex-1 items-center justify-center px-10 h-full bg-white">
+    class="flex w-full h-full bg-surface-40 rounded-2xl border-surface-30 shadow-auth-login font-geist overflow-hidden">
+    <div class="flex flex-1 items-center justify-center px-10 h-full bg-surface-50">
       <div class="flex flex-col items-center gap-10 w-full max-w-[420px]">
         <img src="@/assets/images/Logo.png" class="w-10 h-10" />
 
@@ -25,14 +25,16 @@ const form = ref({
 
         <n-form :model="form" class="w-full" size="large">
           <n-form-item>
-            <n-input v-model:value="form.email" placeholder="Email" type="email" class="custom-input" />
+            <n-input v-model:value="form.email" placeholder="Email"
+              class="border rounded placeholder:!text-[#000000] !text-[#000000]" />
           </n-form-item>
 
           <n-form-item>
-            <n-input v-model:value="form.password" placeholder="Password" type="password" show-password-on="click" />
+            <n-input v-model:value="form.password" placeholder="Password" type="password"
+              class="border rounded placeholder:!text-[#000000] !text-[#000000]" show-password-on="click" />
           </n-form-item>
 
-          <n-button type="primary" size="large" class="w-full !bg-[#111827] !rounded-lg text-white">
+          <n-button type="primary" size="large" class="w-full !bg-[#111827]  text-white">
             Sign in
           </n-button>
         </n-form>

@@ -29,9 +29,9 @@ export default defineNuxtConfig({
     }
   },
 
-  devServer: {
+devServer: {
     port: 7070,
-  },
+},
 
   i18n: {
     strategy: "no_prefix",
