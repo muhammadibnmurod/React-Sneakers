@@ -5,7 +5,7 @@ import Sneakers from "~/components/layouts/Sneakers.vue";
 </script>
 
 <template>
-  <div class="flex flex-col p-12 w-full gap-14">
+  <div class="flex flex-col h-screen p-12 w-full gap-14">
     <Header />
     <Main class="p-16" />
     <Sneakers class="p-16" />

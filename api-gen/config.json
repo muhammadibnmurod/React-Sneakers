@@ -1,0 +1,6 @@
+{
+  "swaggerUrl": "http://192.168.1.171:7070/api/v1/docs",
+  "outputFile": "apiMethods.ts",
+  "outputPath": "../api/",
+  "rmMethodPrefix": true
+}
