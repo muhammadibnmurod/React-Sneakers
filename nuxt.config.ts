@@ -15,6 +15,24 @@ export default defineNuxtConfig({
     },
   },
 
+  app: {
+    head: {
+      title: 'React Sneakers',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'format-detection', content: 'telephone=no' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
+  },
+
+  devServer: {
+    port: 7070,
+  },
+
   i18n: {
     strategy: "no_prefix",
     detectBrowserLanguage: {
