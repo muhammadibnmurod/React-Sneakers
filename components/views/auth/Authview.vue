@@ -4,14 +4,22 @@ import AuthCarousel from "./AuthCarousel.vue";
 
 const form = ref({
   email: "",
+  username: "",
   password: "",
   remember: false,
 });
+
+const register = ref(false);
+
+const toggleRegister = () => {
+  register.value = !register.value;
+};
 </script>
 
 <template>
   <div
-    class="flex w-full h-full bg-surface-40 rounded-2xl border-surface-30 shadow-auth-login font-geist overflow-hidden">
+    class="flex w-full h-full border-gray-800 rounded-2xl border-surface-30 shadow-auth-login font-geist overflow-hidden">
+    <!-- LEFT -->
     <div class="flex flex-1 items-center justify-center px-10 h-full bg-surface-50">
       <div class="flex flex-col items-center gap-10 w-full max-w-[420px]">
         <img src="@/assets/images/Logo.png" class="w-10 h-10" />
@@ -25,27 +33,35 @@ const form = ref({
 
         <n-form :model="form" class="w-full" size="large">
           <n-form-item>
-            <n-input v-model:value="form.email" placeholder="Email"
-              class="border rounded placeholder:!text-[#000000] !text-[#000000]" />
+            <n-input v-model:value="form.username" placeholder="Username"
+              class="custom-input border rounded shadow-md text-[#000000]" />
+          </n-form-item>
+
+          <n-form-item v-if="register">
+            <n-input v-model:value="form.email" placeholder="Email" class="custom-input border rounded shadow-md" />
           </n-form-item>
 
           <n-form-item>
-            <n-input v-model:value="form.password" placeholder="Password" type="password"
-              class="border rounded placeholder:!text-[#000000] !text-[#000000]" show-password-on="click" />
+            <n-input v-model:value="form.password" type="password" show-password-on="click" placeholder="Password"
+              class="custom-input border rounded shadow-md" />
           </n-form-item>
 
-          <n-button type="primary" size="large" class="w-full !bg-[#111827]  text-white">
-            Sign in
+          <n-button type="primary" size="large" class="w-full !bg-[#111827] !text-white">
+            {{ register ? "Sign up" : "Sign in" }}
           </n-button>
         </n-form>
 
+        <!-- TOGGLE -->
         <p class="text-sm text-gray-500">
-          Don’t have an account?
-          <a href="#" class="font-semibold text-black">Sign up</a>
+          {{ register ? "Already have an account?" : "Don’t have an account?" }}
+          <button type="button" @click="toggleRegister" class="font-semibold text-black ml-1">
+            {{ register ? "Sign in" : "Sign up" }}
+          </button>
         </p>
       </div>
     </div>
 
+    <!-- RIGHT -->
     <div class="flex-1 h-full">
       <AuthCarousel />
     </div>
@@ -54,7 +70,19 @@ const form = ref({
 
 <style scoped>
 .custom-input {
-  --n-placeholder-color: #000000;
-  --n-text-color: #000000;
+  --n-placeholder-color: rgba(0, 0, 0, 0.6);
+  --n-border: #d1d5db;
+  --n-border-hover: #9ca3af;
+  --n-border-focus: #111827;
+}
+
+/* INPUT TEXT COLOR */
+:deep(.n-input input) {
+  color: #000000 !important;
+}
+
+/* PASSWORD INPUT HAM */
+:deep(.n-input__input-el) {
+  color: #000000 !important;
 }
 </style>
