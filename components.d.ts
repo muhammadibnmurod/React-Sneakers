@@ -13,9 +13,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     NButton: typeof import('naive-ui')['NButton']
+    NCard: typeof import('naive-ui')['NCard']
     NCarousel: typeof import('naive-ui')['NCarousel']
     NCarouselItem: typeof import('naive-ui')['NCarouselItem']
-    NCheckbox: typeof import('naive-ui')['NCheckbox']
     NDrawer: typeof import('naive-ui')['NDrawer']
     NDrawerContent: typeof import('naive-ui')['NDrawerContent']
     NForm: typeof import('naive-ui')['NForm']
@@ -23,6 +23,7 @@ declare module 'vue' {
     NIcon: typeof import('naive-ui')['NIcon']
     NImage: typeof import('naive-ui')['NImage']
     NInput: typeof import('naive-ui')['NInput']
+    NModal: typeof import('naive-ui')['NModal']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
@@ -31,9 +32,9 @@ declare module 'vue' {
 // For TSX support
 declare global {
   const NButton: typeof import('naive-ui')['NButton']
+  const NCard: typeof import('naive-ui')['NCard']
   const NCarousel: typeof import('naive-ui')['NCarousel']
   const NCarouselItem: typeof import('naive-ui')['NCarouselItem']
-  const NCheckbox: typeof import('naive-ui')['NCheckbox']
   const NDrawer: typeof import('naive-ui')['NDrawer']
   const NDrawerContent: typeof import('naive-ui')['NDrawerContent']
   const NForm: typeof import('naive-ui')['NForm']
@@ -41,6 +42,7 @@ declare global {
   const NIcon: typeof import('naive-ui')['NIcon']
   const NImage: typeof import('naive-ui')['NImage']
   const NInput: typeof import('naive-ui')['NInput']
+  const NModal: typeof import('naive-ui')['NModal']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
 }

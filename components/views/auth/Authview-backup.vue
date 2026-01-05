@@ -1,29 +1,22 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
+import type { AuthResponse } from "~/types";
 import AuthCarousel from "@/components/views/auth/AuthCarousel.vue";
-import AuthVerification from "@/components/views/auth/AuthVerification.vue";
-import { LogIn } from "@vicons/ionicons5";
 
 const showModal = ref(false);
+
+function emailVarification() {
+  showModal.value = true;
+}
+
 const register = ref(false);
 const loading = ref(false);
-const login = ref(false);
 
 const form = reactive({
   email: "",
   username: "",
   password: "",
 });
-
-const loginForm = reactive({
-  username: "",
-  password: "",
-});
-
-const handleLogin = () => {
-  form.username = loginForm.username;
-  form.password = loginForm.password;
-};
 
 const toggleRegister = () => {
   register.value = !register.value;
@@ -33,79 +26,40 @@ const toggleRegister = () => {
 };
 
 const handleSubmit = async () => {
-  // Form validation
-  if (!form.username || !form.password) {
-    alert("Iltimos, barcha maydonlarni to'ldiring");
-    return;
-  }
-
-  if (register.value && !form.email) {
-    alert("Iltimos, email manzilini kiriting");
-    return;
-  }
-
-  loading.value = true;
-
   if (register.value) {
     try {
-      console.log("Register form data:", form);
-      const { data, error, execute } =
-        await useApiService().Auth.register(form);
-      console.log("Before execute");
-      await execute();
-      console.log("After execute - data:", data.value, "error:", error.value);
-
+      const { data, error } = await useApiService().Auth.register(form);
       if (error.value) {
         alert(error.value.message || "Registration xatoligi");
-        loading.value = false;
         return;
       }
-      loading.value = false;
       showModal.value = true;
-      alert("Verification code emailingizga yuborildi!");
+      alert("Verification code sent to your email");
     } catch (error: any) {
-      console.error("Register error:", error);
-      loading.value = false;
-      alert(error.statusMessage || "Xatolik yuz berdi");
+      alert(error.data?.statusMessage || "Xatolik yuz berdi");
     }
   } else {
+    loading.value = true;
     try {
-
-      const loginPayload = {
-        username: form.username,
-        password: form.password,
-      };
-      console.log("Login form data:", form);
-      const { data, error, execute } =
-        await useApiService().Auth.login(loginPayload);
-      console.log("Before execute");
-      await execute();
-      console.log("After execute - data:", data.value, "error:", error.value);
-
+      const { data, error } = await useApiService().Auth.login(form);
       if (error.value) {
         alert(error.value.message || "Login xatoligi");
-        loading.value = false;
         return;
       }
-      if (data.value?.accessToken) {
+      if (data?.value?.accessToken) {
         const authCookie = useCookie("auth_token", {
           maxAge: 60 * 60 * 24 * 7,
         });
         authCookie.value = data.value.accessToken;
         await navigateTo("/dashboard");
-      } else {
-        alert("Login muvaffaqiyatli, lekin token olinmadi");
       }
     } catch (error: any) {
-      console.error("Login error:", error);
-      alert(error.statusMessage || "Xatolik yuz berdi");
+      alert(error.data?.statusMessage || "Xatolik yuz berdi");
     } finally {
       loading.value = false;
     }
   }
 };
-
-
 </script>
 
 <template>
@@ -169,7 +123,7 @@ const handleSubmit = async () => {
         </n-form>
 
         <p class="text-sm text-gray-500">
-          {{ register ? "Already have an account?" : "Don't have an account?" }}
+          {{ register ? "Already have an account?" : "Don’t have an account?" }}
           <button
             type="button"
             @click="toggleRegister"

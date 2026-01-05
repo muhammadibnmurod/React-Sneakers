@@ -8,6 +8,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
 
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE_URL || "https://muhammadsodiq.das-uty.uz",
+    },
+  },
+
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -17,21 +23,19 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'React Sneakers',
+      title: "React Sneakers",
       meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'format-detection', content: 'telephone=no' }
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "format-detection", content: "telephone=no" },
       ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      ]
-    }
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
   },
 
-devServer: {
+  devServer: {
     port: 7070,
-},
+  },
 
   i18n: {
     strategy: "no_prefix",
