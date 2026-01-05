@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Sneakers from "~/layouts/sneakers.vue";
+// import Sneakers from "~/layouts/sneakers.vue";
 </script>
 
 <template>

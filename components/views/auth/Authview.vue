@@ -18,9 +18,12 @@ const toggleRegister = () => {
 
 <template>
   <div
-    class="flex w-full h-full border-gray-800 rounded-2xl border-surface-30 shadow-auth-login font-geist overflow-hidden">
+    class="flex w-full h-full border-gray-800 rounded-2xl border-surface-30 shadow-auth-login font-geist overflow-hidden"
+  >
     <!-- LEFT -->
-    <div class="flex flex-1 items-center justify-center px-10 h-full bg-surface-50">
+    <div
+      class="flex flex-1 items-center justify-center px-10 h-full bg-surface-50"
+    >
       <div class="flex flex-col items-center gap-10 w-full max-w-[420px]">
         <img src="@/assets/images/Logo.png" class="w-10 h-10" />
 
@@ -33,20 +36,36 @@ const toggleRegister = () => {
 
         <n-form :model="form" class="w-full" size="large">
           <n-form-item>
-            <n-input v-model:value="form.username" placeholder="Username"
-              class="custom-input border rounded shadow-md text-[#000000]" />
+            <n-input
+              v-model:value="form.username"
+              placeholder="Username"
+              class="custom-input border rounded shadow-md text-[#000000]"
+            />
           </n-form-item>
 
           <n-form-item v-if="register">
-            <n-input v-model:value="form.email" placeholder="Email" class="custom-input border rounded shadow-md" />
+            <n-input
+              v-model:value="form.email"
+              placeholder="Email"
+              class="custom-input border rounded shadow-md"
+            />
           </n-form-item>
 
           <n-form-item>
-            <n-input v-model:value="form.password" type="password" show-password-on="click" placeholder="Password"
-              class="custom-input border rounded shadow-md" />
+            <n-input
+              v-model:value="form.password"
+              type="password"
+              show-password-on="click"
+              placeholder="Password"
+              class="custom-input border rounded shadow-md"
+            />
           </n-form-item>
 
-          <n-button type="primary" size="large" class="w-full !bg-[#111827] !text-white">
+          <n-button
+            type="primary"
+            size="large"
+            class="w-full !bg-[#111827] !text-white"
+          >
             {{ register ? "Sign up" : "Sign in" }}
           </n-button>
         </n-form>
@@ -54,7 +73,11 @@ const toggleRegister = () => {
         <!-- TOGGLE -->
         <p class="text-sm text-gray-500">
           {{ register ? "Already have an account?" : "Don’t have an account?" }}
-          <button type="button" @click="toggleRegister" class="font-semibold text-black ml-1">
+          <button
+            type="button"
+            @click="toggleRegister"
+            class="font-semibold text-black ml-1"
+          >
             {{ register ? "Sign in" : "Sign up" }}
           </button>
         </p>
@@ -70,19 +93,17 @@ const toggleRegister = () => {
 
 <style scoped>
 .custom-input {
-  --n-placeholder-color: rgba(0, 0, 0, 0.6);
   --n-border: #d1d5db;
   --n-border-hover: #9ca3af;
   --n-border-focus: #111827;
 }
 
-/* INPUT TEXT COLOR */
-:deep(.n-input input) {
-  color: #000000 !important;
+:deep(.n-input__input-el) {
+  color: #000000;
 }
 
-/* PASSWORD INPUT HAM */
-:deep(.n-input__input-el) {
-  color: #000000 !important;
+:deep(.n-input__input-el::placeholder) {
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
 }
 </style>
