@@ -139,5 +139,7 @@ devServer: {
     ],
   },
 
+  ssr: false,
+
   modules: ["@nuxtjs/i18n", "nuxt-svgo"],
 });
